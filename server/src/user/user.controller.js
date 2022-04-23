@@ -22,7 +22,7 @@ export const login = async (req, res) => {
                 await newUser.save()
                 res.send({isAdmin:false,user:newUser}).end()
             }
-            else return res.send({isAdmin:false}).end()
+            else return res.send({isAdmin:false,user:user}).end()
         }
 
     }
