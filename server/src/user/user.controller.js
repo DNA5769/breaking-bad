@@ -1,5 +1,5 @@
 import { config } from 'dotenv'
-import User from './user.model.js'
+import { User } from './user.model.js'
 config({path:'.env'})
 
 export const login = async (req, res) => {
@@ -13,18 +13,18 @@ export const login = async (req, res) => {
             return res.status(400).send({err:"Send a valid Hash Id"}).end()
         }
 
-        const user = await User.findOne({hash_id:hash_id})
-
-        if(!user){
-            const newUser = new User({hash_id})
-            newUser.save()
-        }
-
-
         if(hashes.includes(hash_id))
             return res.send({isAdmin:true}).end()
-        else
-            return res.send({isAdmin:false}).end()
+        else{
+            const user = await User.findOne({hash_id:hash_id})
+            if(!user){
+                const newUser = new User({hash_id})
+                await newUser.save()
+                res.send({isAdmin:false,user:newUser}).end()
+            }
+            else return res.send({isAdmin:false}).end()
+        }
+
     }
     catch(err){
         console.log(err)
