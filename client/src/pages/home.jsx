@@ -1,10 +1,21 @@
+import { useContext, useEffect } from 'react';
 import Footer from '../components/Footer'
-import { useNavigate } from "react-router-dom";
+// import {  withRouter } from "react-router-dom";
 import Tip from '../components/Tip'
 import '../App.css'
+import { TransactionContext } from '../context/TransactionContext';
+
 
 const Home = () => {
-  let navigate = useNavigate();
+  // let history = useHistory();
+  // let admin = 0x52e1447a2c83d66216c6c0a4246fad6435a2de26;
+
+  // const {currentAccount} = useContext(TransactionContext);
+
+  // useEffect(() => {
+  //   if(currentAccount == admin)
+  //     props.history.push("/admin")
+  // },[currentAccount]);
 
   return (
 
@@ -14,7 +25,7 @@ const Home = () => {
             <h1 className='text-2xl font-inter'>Project_Name</h1>
             <button className='bg-blue-600 p-2 px-4 rounded-md text-white font-inter' onClick={() => navigate('/addTip')}>Add Tip-Off</button>
           </div>
-
+  
           <div className='flex w-full my-5 flex-col items-start'>
             <h3 className='text-lg font-inter mb-5'>Past Tip-Off</h3>
 
