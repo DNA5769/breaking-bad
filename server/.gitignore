@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+tipoff_evidences/*
+!tipoff_evidences/.gitkeep 

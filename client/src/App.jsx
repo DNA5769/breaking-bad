@@ -2,7 +2,6 @@ import Index from './pages'
 import Admin from './pages/admin'
 import Home from './pages/home'
 import AddTip from './pages/addTip'
-
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import { TransactionsProvider } from './context/TransactionContext'
 
