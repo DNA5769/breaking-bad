@@ -13,7 +13,9 @@ const App = () => {
         <Routes>
           <Route path="/addTip" element={<AddTip/>}/>
           <Route path="/home" element={<Home/>}/>
-          <Route path="/transact" element={<Transact/>}/>
+          <Route path="/transact/:id" element={<Transact />}/>
+            {/* <Route path=':id' element={<Transact />}/> */}
+          {/* </Route> */}
           <Route path="/admin" element={<Admin/>}/>
           <Route path="/" exact element={<Index />}/>
         </Routes>
