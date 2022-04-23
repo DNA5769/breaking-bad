@@ -5,6 +5,7 @@ import cors from 'cors'
 import { connect } from './utils/db.js'
 import { config } from 'dotenv'
 
+import tipoffRouter from '../routers/tipoff.js';
 
 const app = express()
 const { json, urlencoded } = pkg
@@ -16,6 +17,8 @@ app.use(json())
 app.use(morgan('dev'))
 app.use(cors())
 app.options('*', cors())
+
+app.use('/tipoff', tipoffRouter)
 
 app.get('/', (req, res) => {
     res.send('Hello World')
