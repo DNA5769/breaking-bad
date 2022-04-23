@@ -32,7 +32,7 @@ const CommentSection = ({ tipoff }) => {
     }
 
     return (
-        <div className='w-full border-2 overflow-y-scroll h-32 py-2 px-1 my-5 scrollbar-thin scrollbar-thumb-gray-500 hover:scrollbar-thumb-grey-700 scrollbar-track-gray-100'>
+        <div className='w-full border-2 overflow-y-scroll h-32 py-2 px-2 my-5 scrollbar-thin scrollbar-thumb-gray-500 hover:scrollbar-thumb-grey-700 scrollbar-track-gray-100'>
             <div>
                 <div className='font-semibold'>Enquiry</div>
                 {comments.map((c,i) => (
