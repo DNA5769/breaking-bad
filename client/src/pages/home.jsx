@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { TransactionContext } from '../context/TransactionContext';
-import { Navigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import * as API from '../../api/index'
 import Footer from '../components/Footer'
 import Tip from '../components/Tip'
@@ -11,6 +11,7 @@ import '../App.css'
 const Home = () => {
   const {currentAccount} = useContext(TransactionContext);
   const [redirect, setRedirect] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if(currentAccount != "")
