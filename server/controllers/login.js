@@ -31,3 +31,16 @@ export const login = async (req, res) => {
         return res.status(500).json({ error: err }).end()
     }
 }
+
+
+export const getUser = async (req,res) => {
+    const { hash_id } = req.body
+    console.log(req.body)
+    if(hash_id){
+        const user = await User.findOne({hash_id:hash_id})
+        console.log(user)
+        return res.send({data:user}).end();
+    }
+    else 
+        return res.status(400).send({err:"Not a Valid Hash Id"}).end()
+}

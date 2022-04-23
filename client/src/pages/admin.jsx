@@ -7,10 +7,10 @@ import axios from 'axios'
 import { BiCurrentLocation, BiMessageDetail } from 'react-icons/bi'
 import { AiOutlineFileJpg, AiOutlineEye} from 'react-icons/ai'
 import { FaEthereum } from 'react-icons/fa'
+import { AiOutlineStar } from 'react-icons/ai'
 import { useNavigate } from 'react-router'
 import CommentSection from '../components/commentSection';
 import Tip from '../components/Tip';
-
 
 const Admin = () => {
     const [allTips, setTips] = useState();
@@ -42,20 +42,31 @@ const Admin = () => {
 
             <div className='grid w-full grid-cols-3 gap-5'>
               {
-                allTips && allTips.map(tipoff =>(
-                        <div className={ (parseFloat( tipoff.bounty.$numberDecimal ) > 0 ? "bg-green-50" : "bg-gray-50") + " w-full border rounded-md p-3 flex flex-col items-start hover:border-gray-500 font-inter  hover:drop-shadow-md"}>
-                        <Tip tipoff = {tipoff}>
-                        <div className='flex justify-center w-full my-5 item-center'>
-                            { parseFloat( tipoff.bounty.$numberDecimal ) === 0 &&
-                                <Link to={`/transact/${tipoff.userHash}`} className='flex flex-row items-center py-1 text-white rounded-full bg-cyan-500 hover:shadow-md hover:shadow-cyan-600 '>
-                                    <FaEthereum size={25} className="m-2" color='white'/> 
-                                    <a className='mr-3 font-semibold'>Pay Now</a> 
-                                </Link>
-                            }
-                        </div>
-                        </Tip>
-                        </div>
-                        )
+                allTips && allTips.map(
+                    
+                    (tipoff) => {
+                        let score = 0;
+                        axios.post('http://localhost:3030/user/getUser',{hash_id:tipoff.userHash})
+                        .then(res => score = res.data.score)
+                        .catch(err => console.log(err)) 
+
+                        return( <div className={ (parseFloat( tipoff.bounty.$numberDecimal ) > 0 ? "bg-green-50" : "bg-gray-50") + " w-full border rounded-md p-3 flex flex-col items-start hover:border-gray-500 font-inter  hover:drop-shadow-md"}>
+                            <Tip tipoff = {tipoff}>
+                            <div className='flex flex-row w-full space-x-2 rounded-md p-2'>
+                                <AiOutlineStar size={25} className="w-1/12"/>
+                                <p className='w-11/12 text-left'>{score}</p>
+                            </div>
+                            <div className='flex justify-center w-full my-2 item-center'>
+                                { parseFloat( tipoff.bounty.$numberDecimal ) === 0 &&
+                                    <Link to={`/transact/${tipoff.userHash}`} className='flex flex-row items-center py-1 text-white rounded-full bg-cyan-500 hover:shadow-md hover:shadow-cyan-600 '>
+                                        <FaEthereum size={25} className="m-2" color='white'/> 
+                                        <a className='mr-3 font-semibold'>Pay Now</a> 
+                                    </Link>
+                                }
+                            </div>
+                            </Tip>
+                        </div>)
+                    }
                 )
               }
             </div>
