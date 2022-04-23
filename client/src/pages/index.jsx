@@ -2,6 +2,8 @@ import {TransactionsProvider} from '../context/TransactionContext'
 import Footer from '../components/Footer'
 import Welcome from '../components/Welcome'
 
+
+
 const Index = () => {
   return (
     <TransactionsProvider>
