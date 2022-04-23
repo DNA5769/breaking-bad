@@ -6,9 +6,6 @@ import Footer from '../components/Footer'
 import Tip from '../components/Tip'
 import axios from 'axios';
 import '../App.css'
-import { BiCurrentLocation, BiMessageDetail } from 'react-icons/bi'
-import { AiOutlineFileJpg, AiOutlineEye} from 'react-icons/ai'
-import CommentSection from '../components/commentSection';
 
 const Home = () => {
   const {currentAccount} = useContext(TransactionContext);
@@ -46,7 +43,10 @@ const Home = () => {
           
           <div className='flex justify-between w-full'>
             <h1 className='text-2xl font-bold font-inter'>Project_Name</h1>
-            <button className='p-2 px-4 text-white bg-blue-600 rounded-md font-inter' onClick={() => navigate('/addTip')}>Add Tip-Off</button>
+            <div>
+              <button className='p-2 px-4 text-white bg-blue-600 rounded-md font-inter mr-3' onClick={() => navigate('/bounties')}>Recent Bounties</button>
+              <button className='p-2 px-4 text-white bg-blue-600 rounded-md font-inter' onClick={() => navigate('/addTip')}>Add Tip-Off</button>
+            </div>
           </div>
   
           <div className='flex flex-col items-start w-full my-5'>
@@ -54,29 +54,10 @@ const Home = () => {
 
             <div className='grid grid-cols-3 gap-5'>
               {
-                tipoffs.map(tipoff =>
-                  <div className={ (parseFloat( tipoff.bounty.$numberDecimal ) > 0 ? "bg-green-50" : "bg-gray-50") + " w-full border rounded-md p-3 flex flex-col items-start hover:border-gray-500 font-inter  hover:drop-shadow-md"}>
-                    <div className='flex flex-row w-full space-x-2 rounded-md'>
-                      <BiCurrentLocation size={25} className="w-1/12 mt-1"/>
-                      <p className='w-11/12 text-left'>{tipoff.location}</p>
-                    </div>
-                    <div className="w-full my-1 border-t"></div> 
-                    <div className='flex flex-row w-full space-x-2 rounded-md'>
-                      <BiMessageDetail size={25} className="w-1/12 mt-1"/>
-                      <p className='w-11/12 text-left'>{tipoff.message}</p>
-                    </div>
-                    <div class="w-full my-1 border-t"></div> 
-                    <div className='flex flex-row w-full space-x-2 rounded-md'>
-                      <AiOutlineEye size={25} className="w-1/12 mt-1"/>
-                      <div className='flex flex-row w-11/12'>
-                        <AiOutlineFileJpg size={25} className="mt-1"/>
-                        <AiOutlineFileJpg size={25} className="mt-1 ml-2"/>
-                        <AiOutlineFileJpg size={25} className="mt-1 ml-2"/>
-                        <AiOutlineFileJpg size={25} className="mt-1 ml-2"/>
-                      </div>
-                    </div>
-                    <CommentSection tipoff={tipoff} />
-                  </div>
+                tipoffs.map((tipoff) =>(
+                  <div className={ (parseFloat( tipoff.bounty.$numberDecimal ) > 0 ? "bg-green-50" : "bg-gray-50") + " w-full border rounded-md flex flex-col items-start hover:border-gray-500 font-inter  hover:drop-shadow-md"}>
+                    <Tip tipoff={tipoff}/>
+                  </div>)
                 )
               }
             </div>
