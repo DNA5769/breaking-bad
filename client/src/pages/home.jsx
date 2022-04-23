@@ -17,7 +17,11 @@ const Home = () => {
   useEffect(() => {
     if (currentAccount !== "")
       axios.get('http://localhost:3030/tipoff/user', { params: { userHash: currentAccount } })
-        .then(res => {setTipoffs(res.data); console.log(res.data)});
+        .then(res => {
+          setTipoffs(res.data); 
+          console.log(res.data);
+          console.log(res.data[0].bounty.$numberDecimal)
+        });
   }, [currentAccount]);
 
   // let history = useHistory();
@@ -45,7 +49,7 @@ const Home = () => {
             <div className='grid grid-cols-3 gap-5'>
               {
                 tipoffs.map(tipoff =>
-                  <div className='w-full border rounded-md p-3 flex flex-col items-start hover:border-gray-500 font-inter bg-gray-50 hover:drop-shadow-md'>
+                  <div className={ (parseFloat( tipoff.bounty.$numberDecimal ) > 0 ? "bg-green-50" : "bg-gray-50") + " w-full border rounded-md p-3 flex flex-col items-start hover:border-gray-500 font-inter  hover:drop-shadow-md"}>
                     <div className='flex flex-row rounded-md w-full space-x-2'>
                       <BiCurrentLocation size={25} className="w-1/12 mt-1"/>
                       <p className='text-left w-11/12'>{tipoff.location}</p>

@@ -25,7 +25,7 @@ const Admin = () => {
         <main className='flex flex-col items-center flex-1 w-full text-center px-44'>
             <h3 className='text-3xl font-bold my-8'>Admin</h3>
 
-            <div className='grid grid-cols-3 gap-5'>
+            <div className='grid grid-cols-3 gap-5 w-full'>
               {
                 allTips && allTips.map(tipoff =>
                     <div className='w-full border rounded-md p-3 flex flex-col items-start hover:border-gray-500 font-inter bg-gray-50 hover:drop-shadow-md'>
@@ -54,10 +54,14 @@ const Admin = () => {
                         </div>
 
                         <div className='flex w-full item-center justify-center my-5'>
-                            <button onClick={()=>navigate('/transact')} className='flex flex-row items-center rounded-full bg-cyan-500 py-1 text-white hover:shadow-md hover:shadow-cyan-600 '>
-                                <FaEthereum size={25} className="m-2" color='white'/> 
-                                <a className='mr-3 font-semibold'>Pay Now</a> 
-                            </button>
+
+
+                            { parseFloat( tipoff.bounty.$numberDecimal ) === 0 &&
+                                <button onClick={()=>navigate('/transact')} className='flex flex-row items-center rounded-full bg-cyan-500 py-1 text-white hover:shadow-md hover:shadow-cyan-600 '>
+                                    <FaEthereum size={25} className="m-2" color='white'/> 
+                                    <a className='mr-3 font-semibold'>Pay Now</a> 
+                                </button>
+                            }
                         </div>
                     </div>
                 )
