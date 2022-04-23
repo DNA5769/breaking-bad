@@ -13,9 +13,10 @@ const Home = () => {
   const [tipoffs, setTipoffs] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3030/tipoff/user', { params: { userHash: currentAccount } })
-      .then(res => {setTipoffs(res.data); console.log(res.data)});
-  }, []);
+    if (currentAccount !== "")
+      axios.get('http://localhost:3030/tipoff/user', { params: { userHash: currentAccount } })
+        .then(res => {setTipoffs(res.data); console.log(res.data)});
+  }, [currentAccount]);
 
   // let history = useHistory();
   // let admin = 0x52e1447a2c83d66216c6c0a4246fad6435a2de26;
