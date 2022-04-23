@@ -1,11 +1,10 @@
 import Footer from '../components/Footer'
+import Form from '../components/Form'
 
 const Admin = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-5">
-      <main className='flex w-full flex-1 flex-col items-center justify-center px-20 text-center'>
-          Admin
-      </main>
+      <Form />          
       <Footer />
     </div>
   )
