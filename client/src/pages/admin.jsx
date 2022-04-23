@@ -14,10 +14,8 @@ import Tip from '../components/Tip';
 
 const Admin = () => {
     const [allTips, setTips] = useState();
-    const navigate = useNavigate()
     const {currentAccount} = useContext(TransactionContext);
     const [redirect, setRedirect] = useState(false);
-    const [tipId,setTipId] = useState("");
   
     useEffect(() => {
         if(currentAccount != "")
@@ -34,12 +32,27 @@ const Admin = () => {
             });
     }, [currentAccount]);
 
+    // const sortTips =() =>{
+    //     const newTips = [...allTips];
+    //     newTips.sort((tip1,tip2) =>{
+    //         return tip1.
+    //     })
+    // }    
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-5 font-inter">
         <main className='flex flex-col items-center flex-1 w-full text-center px-44'>
             { redirect && <Navigate to='/home' /> }
             <h3 className='my-8 text-3xl font-bold'>Admin</h3>
-
+            <div className='right-0 bottom-0'>
+            <label>
+            Sort by
+            <select className=''>
+                <option value=''>Select</option>
+                <option  value='User Reliability'>User Reliability</option>
+            </select>
+            </label>
+            </div>
             <div className='grid w-full grid-cols-3 gap-5'>
               {
                 allTips && allTips.map(

@@ -13,10 +13,15 @@ const Transact = () => {
   },[])
   // console.log(id);
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-5">
+    <>
+    <div className="flex min-h-screen flex-col items-center py-5">
+      <div className='my-10 text-3xl font-bold'>Offer Bounty to <span className=' text-gray-400 font-mono font-normal text-lg'>{id}</span></div>
       <Form />          
+    </div>
+    <div className=' align-middle text-center'>
       <Footer />
     </div>
+    </>
   )
 }
 
