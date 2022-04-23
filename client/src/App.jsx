@@ -5,6 +5,7 @@ import AddTip from './pages/addTip'
 import {TransactionsProvider} from './context/TransactionContext'
 
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import { TransactionsProvider } from './context/TransactionContext'
 
 const App = () => {
   return (
