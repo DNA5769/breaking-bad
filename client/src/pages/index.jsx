@@ -5,7 +5,7 @@ import Welcome from '../components/Welcome'
 const Index = () => {
   return (
     <TransactionsProvider>
-      <div className="flex min-h-screen flex-col items-center justify-center py-2">
+      <div className="flex min-h-screen flex-col items-center justify-center py-5">
         <Welcome />
         <Footer />
       </div>
