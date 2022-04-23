@@ -5,10 +5,14 @@ const adminRouter = Router()
 
 async function transact(req,res){
     const {addressto,amount} = req.body;
-    console.log(addressto,amount)
 
+    if(!addressto || !amount){
+        return res.status(400).send({err:"Send Valid Address"}).end()
+    }
     const user = await User.findOne({hash_id: addressto})
-    return res.status(200).send({data:addressto}).end()
+    user['score'] = user['score'] + 1
+    user.save()
+    return res.status(200).send({data:user}).end()
 }
 
 adminRouter
