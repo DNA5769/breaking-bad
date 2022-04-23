@@ -9,6 +9,12 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const router = express.Router();
 
+router.get('/all', (req, res) => {
+    Tipoff.find({}, (err, tipoffs) => {
+        res.status(200).json(tipoffs);
+    })
+});
+
 router.get('/user', (req, res) => {
     Tipoff.find({ userHash: req.query.userHash }, (err, tipoffs) => {
         res.status(200).json(tipoffs);
