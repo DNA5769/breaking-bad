@@ -4,7 +4,6 @@ import { Navigate } from "react-router-dom";
 import * as API from '../../api/index'
 import Footer from '../components/Footer'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
 import { BiCurrentLocation, BiMessageDetail } from 'react-icons/bi'
 import { AiOutlineFileJpg, AiOutlineEye} from 'react-icons/ai'
 import { FaEthereum } from 'react-icons/fa'

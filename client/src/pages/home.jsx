@@ -6,12 +6,8 @@ import Footer from '../components/Footer'
 import Tip from '../components/Tip'
 import axios from 'axios';
 import '../App.css'
-<<<<<<< HEAD
-import { TransactionContext } from '../context/TransactionContext';
 import { BiCurrentLocation, BiMessageDetail } from 'react-icons/bi'
 import { AiOutlineFileJpg, AiOutlineEye} from 'react-icons/ai'
-=======
->>>>>>> main
 
 
 const Home = () => {
