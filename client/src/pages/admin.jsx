@@ -1,3 +1,7 @@
+import React, { useContext, useEffect, useState } from 'react';
+import { TransactionContext } from '../context/TransactionContext';
+import { Navigate } from "react-router-dom";
+import * as API from '../../api/index'
 import Footer from '../components/Footer'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
@@ -10,15 +14,21 @@ import { useNavigate } from 'react-router'
 const Admin = () => {
     const [allTips, setTips] = useState();
     const navigate = useNavigate()
-
-    useEffect(()=>{
-        axios.get('http://localhost:3030/tipoff/all')
-        .then((res)=>{
-            setTips(res.data)
-        })
-    },[])
-
-    console.log(allTips)
+    const {currentAccount} = useContext(TransactionContext);
+    const [redirect, setRedirect] = useState(false);
+  
+    useEffect(() => {
+        if(currentAccount != "")
+            API.login(currentAccount).then(res => {
+                if(!res.data.isAdmin)
+                    setRedirect(true);
+                else
+                    axios.get('http://localhost:3030/tipoff/all')
+                    .then((res)=>{
+                        setTips(res.data)
+                    })
+            });
+    }, [currentAccount]);
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-5 font-inter">
@@ -69,10 +79,6 @@ const Admin = () => {
             </div>
 
         </main>
-
-
-              
-      <Footer />
     </div>
   )
 }

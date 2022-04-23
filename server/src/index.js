@@ -7,8 +7,8 @@ import { connect } from './utils/db.js'
 import { config } from 'dotenv'
 
 import tipoffRouter from '../routers/tipoff.js';
-import userRouter from './user/user.route.js'
-import adminRouter from './admin/admin.router.js'
+import loginRouter from '../routers/login.js'
+import adminRouter from '../routers/admin.js'
 
 const app = express()
 const { json, urlencoded } = pkg
@@ -28,8 +28,8 @@ app.get('/', (req, res) => {
     res.send('Hello World')
 })
 
-app.use('/user', userRouter)
-app.use('/admin',adminRouter)
+app.use('/user', loginRouter)
+app.use('/admin', adminRouter)
 
 app.listen(PORT, async () => {
     config({path:'.env'})

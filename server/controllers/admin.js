@@ -1,9 +1,6 @@
-import { Router } from 'express'
-import { User } from '../user/user.model.js'
+import { User } from '../models/user.js'
 
-const adminRouter = Router()
-
-async function transact(req,res){
+async function transact(req,res) {
     const {addressto,amount} = req.body;
 
     if(!addressto || !amount){
@@ -15,11 +12,4 @@ async function transact(req,res){
     return res.status(200).send({data:user}).end()
 }
 
-adminRouter
-    .post('/transact', transact)
-
-
-
-
-
-export default adminRouter
+export default transact;
