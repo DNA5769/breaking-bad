@@ -9,6 +9,7 @@ import { AiOutlineFileJpg, AiOutlineEye} from 'react-icons/ai'
 import { FaEthereum } from 'react-icons/fa'
 import { useNavigate } from 'react-router'
 import CommentSection from '../components/commentSection';
+import Tip from '../components/Tip';
 
 
 const Admin = () => {
@@ -41,37 +42,10 @@ const Admin = () => {
 
             <div className='grid w-full grid-cols-3 gap-5'>
               {
-                allTips && allTips.map(tipoff =>
-                    <div className='flex flex-col items-start w-full p-3 border rounded-md hover:border-gray-500 font-inter bg-gray-50 hover:drop-shadow-md'>
-                        <div className='flex flex-row w-full my-2 space-x-2 rounded-md'>
-                            <BiCurrentLocation size={25} className="w-1/12"/>
-                            <p className='w-11/12 text-left'>{tipoff.location}</p>
-                        </div>
-                        
-                        <div class="w-full border-t my-2"></div>
-
-                        <div className='flex flex-row w-full my-2 space-x-2 rounded-md'>
-                            <BiMessageDetail size={25} className="w-1/12"/>
-                            <p className='w-11/12 text-left'>{tipoff.message}</p>
-                        </div>
-
-                        <div class="w-full my-2 border-t"></div> 
-                        
-                        <div className='flex flex-row w-full my-2 space-x-2 rounded-md'>
-                            <AiOutlineEye size={25} className="w-1/12"/>
-                            <div className='flex flex-row w-11/12'>
-                                <AiOutlineFileJpg size={25} className="mt-1"/>
-                                <AiOutlineFileJpg size={25} className="mt-1 ml-2"/>
-                                <AiOutlineFileJpg size={25} className="mt-1 ml-2"/>
-                                <AiOutlineFileJpg size={25} className="mt-1 ml-2"/>
-                            </div>
-                        </div>
-
-                        <CommentSection tipoff={tipoff} />
-
+                allTips && allTips.map(tipoff =>(
+                        <div className={ (parseFloat( tipoff.bounty.$numberDecimal ) > 0 ? "bg-green-50" : "bg-gray-50") + " w-full border rounded-md p-3 flex flex-col items-start hover:border-gray-500 font-inter  hover:drop-shadow-md"}>
+                        <Tip tipoff = {tipoff}>
                         <div className='flex justify-center w-full my-5 item-center'>
-
-
                             { parseFloat( tipoff.bounty.$numberDecimal ) === 0 &&
                                 <Link to={`/transact/${tipoff.userHash}`} className='flex flex-row items-center py-1 text-white rounded-full bg-cyan-500 hover:shadow-md hover:shadow-cyan-600 '>
                                     <FaEthereum size={25} className="m-2" color='white'/> 
@@ -79,7 +53,9 @@ const Admin = () => {
                                 </Link>
                             }
                         </div>
-                    </div>
+                        </Tip>
+                        </div>
+                        )
                 )
               }
             </div>
