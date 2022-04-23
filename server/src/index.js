@@ -1,4 +1,5 @@
 import express from 'express'
+import fileUpload from 'express-fileupload';
 import pkg from 'body-parser'
 import morgan from 'morgan'
 import cors from 'cors'
@@ -13,6 +14,7 @@ const PORT = process.env.PORT || 3030
 // app.use('/user',userRouter)
 
 app.use(urlencoded({ extended: true }))
+app.use(fileUpload());
 app.use(json())
 app.use(morgan('dev'))
 app.use(cors())
@@ -23,8 +25,6 @@ app.use('/tipoff', tipoffRouter)
 app.get('/', (req, res) => {
     res.send('Hello World')
 })
-
-
 
 app.listen(PORT, async () => {
     config({path:'.env'})

@@ -9,7 +9,8 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    
+    console.log(__dirname)
+    res.status(200).send("Hello");
 });
 
 export default router;
