@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { TransactionContext } from '../context/TransactionContext';
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import * as API from '../../api/index'
 import Footer from '../components/Footer'
 import axios from 'axios'
@@ -15,6 +15,7 @@ const Admin = () => {
     const navigate = useNavigate()
     const {currentAccount} = useContext(TransactionContext);
     const [redirect, setRedirect] = useState(false);
+    const [tipId,setTipId] = useState("");
   
     useEffect(() => {
         if(currentAccount != "")
@@ -25,6 +26,7 @@ const Admin = () => {
                     axios.get('http://localhost:3030/tipoff/all')
                     .then((res)=>{
                         setTips(res.data)
+                        // console.log(allTips);
                     })
                 }
             });
@@ -68,10 +70,10 @@ const Admin = () => {
 
 
                             { parseFloat( tipoff.bounty.$numberDecimal ) === 0 &&
-                                <button onClick={()=>navigate('/transact')} className='flex flex-row items-center py-1 text-white rounded-full bg-cyan-500 hover:shadow-md hover:shadow-cyan-600 '>
+                                <Link to={`/transact/${tipoff.userHash}`} className='flex flex-row items-center py-1 text-white rounded-full bg-cyan-500 hover:shadow-md hover:shadow-cyan-600 '>
                                     <FaEthereum size={25} className="m-2" color='white'/> 
                                     <a className='mr-3 font-semibold'>Pay Now</a> 
-                                </button>
+                                </Link>
                             }
                         </div>
                     </div>

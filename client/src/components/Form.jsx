@@ -25,7 +25,6 @@ const Form = () => {
       };
     return(
     <div className='flex w-full flex-1 flex-col items-center px-44 text-center'>
-                <Input placeholder="Address To" name="addressTo" type="text" handleChange={handleChange} />
                 <Input placeholder="Amount (ETH)" name="amount" type="number" handleChange={handleChange} />
                 <Input placeholder="Keyword (Gif)" name="keyword" type="text" handleChange={handleChange} />
                 <Input placeholder="Enter Message" name="message" type="text" handleChange={handleChange} />
