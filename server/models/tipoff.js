@@ -5,7 +5,6 @@ const tipoffSchema = new mongoose.Schema({
     message: String,
     location: String,
     bounty: mongoose.Types.Decimal128,
-    filePaths: [String],
     comments: { type: [String], default: [] }
 });
 
