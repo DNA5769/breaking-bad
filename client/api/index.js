@@ -5,3 +5,4 @@ const API = axios.create({
 });
 
 export const login = (walletHash) => API.post('/user/login', { hash_id: walletHash });
+export const comment = (value, id) => API.post(`/tipoff/${id}/comment`, { value });

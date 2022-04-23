@@ -8,6 +8,7 @@ import { BiCurrentLocation, BiMessageDetail } from 'react-icons/bi'
 import { AiOutlineFileJpg, AiOutlineEye} from 'react-icons/ai'
 import { FaEthereum } from 'react-icons/fa'
 import { useNavigate } from 'react-router'
+import CommentSection from '../components/commentSection';
 
 
 const Admin = () => {
@@ -65,6 +66,8 @@ const Admin = () => {
                                 <AiOutlineFileJpg size={25} className="mt-1 ml-2"/>
                             </div>
                         </div>
+
+                        <CommentSection tipoff={tipoff} />
 
                         <div className='flex justify-center w-full my-5 item-center'>
 

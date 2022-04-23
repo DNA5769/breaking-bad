@@ -8,7 +8,7 @@ import axios from 'axios';
 import '../App.css'
 import { BiCurrentLocation, BiMessageDetail } from 'react-icons/bi'
 import { AiOutlineFileJpg, AiOutlineEye} from 'react-icons/ai'
-
+import CommentSection from '../components/commentSection';
 
 const Home = () => {
   const {currentAccount} = useContext(TransactionContext);
@@ -45,7 +45,7 @@ const Home = () => {
           { redirect && <Navigate to='/admin' /> }
           
           <div className='flex justify-between w-full'>
-            <h1 className='text-2xl font-inter font-bold'>Project_Name</h1>
+            <h1 className='text-2xl font-bold font-inter'>Project_Name</h1>
             <button className='p-2 px-4 text-white bg-blue-600 rounded-md font-inter' onClick={() => navigate('/addTip')}>Add Tip-Off</button>
           </div>
   
@@ -56,25 +56,26 @@ const Home = () => {
               {
                 tipoffs.map(tipoff =>
                   <div className={ (parseFloat( tipoff.bounty.$numberDecimal ) > 0 ? "bg-green-50" : "bg-gray-50") + " w-full border rounded-md p-3 flex flex-col items-start hover:border-gray-500 font-inter  hover:drop-shadow-md"}>
-                    <div className='flex flex-row rounded-md w-full space-x-2'>
+                    <div className='flex flex-row w-full space-x-2 rounded-md'>
                       <BiCurrentLocation size={25} className="w-1/12 mt-1"/>
-                      <p className='text-left w-11/12'>{tipoff.location}</p>
+                      <p className='w-11/12 text-left'>{tipoff.location}</p>
                     </div>
-                    <div class="w-full my-1 border-t"></div> 
-                    <div className='flex flex-row rounded-md w-full space-x-2'>
+                    <div className="w-full my-1 border-t"></div> 
+                    <div className='flex flex-row w-full space-x-2 rounded-md'>
                       <BiMessageDetail size={25} className="w-1/12 mt-1"/>
-                      <p className='text-left w-11/12'>{tipoff.message}</p>
+                      <p className='w-11/12 text-left'>{tipoff.message}</p>
                     </div>
                     <div class="w-full my-1 border-t"></div> 
-                    <div className='flex flex-row rounded-md w-full space-x-2'>
+                    <div className='flex flex-row w-full space-x-2 rounded-md'>
                       <AiOutlineEye size={25} className="w-1/12 mt-1"/>
-                      <div className='w-11/12 flex flex-row'>
+                      <div className='flex flex-row w-11/12'>
                         <AiOutlineFileJpg size={25} className="mt-1"/>
                         <AiOutlineFileJpg size={25} className="mt-1 ml-2"/>
                         <AiOutlineFileJpg size={25} className="mt-1 ml-2"/>
                         <AiOutlineFileJpg size={25} className="mt-1 ml-2"/>
                       </div>
                     </div>
+                    <CommentSection tipoff={tipoff} />
                   </div>
                 )
               }
