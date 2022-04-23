@@ -9,6 +9,12 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const router = express.Router();
 
+router.get('/user', (req, res) => {
+    Tipoff.find({ userHash: req.query.userHash }, (err, tipoffs) => {
+        res.status(200).json(tipoffs);
+    })
+});
+
 router.post('/', (req, res) => {
     const doc = new Tipoff({
         userHash: req.body.userHash,
@@ -16,6 +22,7 @@ router.post('/', (req, res) => {
         message: req.body.message,
         bounty: 0
     });
+
     doc.save((err, tipoff) => {
         if (err)
             res.status(500).send("Please try again later!!!");

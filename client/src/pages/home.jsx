@@ -1,13 +1,22 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Footer from '../components/Footer'
 import { useNavigate } from "react-router-dom";
 import Tip from '../components/Tip'
+import axios from 'axios';
 import '../App.css'
 import { TransactionContext } from '../context/TransactionContext';
 
 
 const Home = () => {
   const navigate = useNavigate();
+  const { currentAccount } = useContext(TransactionContext);
+  const [tipoffs, setTipoffs] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3030/tipoff/user', { params: { userHash: currentAccount } })
+      .then(res => {setTipoffs(res.data); console.log(res.data)});
+  }, []);
+
   // let history = useHistory();
   // let admin = 0x52e1447a2c83d66216c6c0a4246fad6435a2de26;
 
@@ -30,7 +39,18 @@ const Home = () => {
           <div className='flex flex-col items-start w-full my-5'>
             <h3 className='mb-5 text-lg font-inter'>Past Tip-Off</h3>
 
-            <table className='w-full text-left border font-inter'>
+            {tipoffs.map(tipoff => <div className='w-full my-2 border-2'>
+              Location: {tipoff.location}
+              <br/>
+              Message: {tipoff.message}
+              <br/>
+              Bounty: {tipoff.bounty.$numberDecimal}
+              <br/>
+              File Paths: {tipoff.filePaths}
+              <br/>
+            </div>)}
+
+            {/* <table className='w-full text-left border font-inter'>
               <thead>
                 <tr className='border'>
                   <th className='w-1/5 px-6 py-4 text-gray-900'>Name</th>
@@ -62,7 +82,7 @@ const Home = () => {
                 </tr>
               </tbody>
               
-            </table>
+            </table> */}
           </div>
 
       </main>
