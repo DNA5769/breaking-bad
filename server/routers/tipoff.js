@@ -46,7 +46,7 @@ router.post('/', (req, res) => {
                     res.status(500).send("Please try again later!!!");
                 
                 tipoff.filePaths.push(path.join(__dirname, '..', 'tipoff_evidences', tipoff.id, req.files[`file${i+1}`].name));
-                await tipoff.save();
+                await tipoff.save();  
             });
         
         res.status(200).send("Success");
