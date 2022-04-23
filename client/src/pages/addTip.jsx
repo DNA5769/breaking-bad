@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import Footer from '../components/Footer'
 import { TransactionContext } from '../context/TransactionContext';
+import { useNavigate } from 'react-router-dom'
 
 const AddTip = () => {
     const { currentAccount } = useContext(TransactionContext);
@@ -10,6 +11,7 @@ const AddTip = () => {
     const [message, setMessage] = useState('');
     const [files, setFiles] = useState([]);
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleUpload = e => {
         if (e.target.files.length !== 0);
@@ -51,6 +53,7 @@ const AddTip = () => {
                     'Content-Type': 'multipart/form-data'
                 },
             });
+            navigate('/home')
         } catch (err) {
             console.log(err);
             setError('Please try again later');
@@ -63,7 +66,7 @@ const AddTip = () => {
                 <h1 className='m-5 text-2xl font-inter'>Enter The Details</h1>
                 <input type='text' placeholder='Enter the Location' value={location} onChange={e => setLocation(e.target.value)} className='w-1/3 p-2 my-2 border-2 rounded-md font-inter'/>
                 <textarea placeholder='Brief the Scene' value={message} onChange={e => setMessage(e.target.value)} rows={4} className='w-1/3 p-2 my-2 border-2 rounded-md font-inter' />
-                {files.map((file, i) => <div className='flex justify-between w-1/3 p-2 my-2 border-2 font-inter'>
+                {files.map((file, i) => <div className='flex justify-between w-1/3 p-2 my-2 border-2 font-inter rounded-md'>
                     <h2 className='flex-1'>{file.name}</h2>
                     <h2 className='font-bold text-red-600 cursor-pointer' onClick={() => setFiles(files.filter((f, j) => i !== j))}>X</h2>
                 </div>)}
