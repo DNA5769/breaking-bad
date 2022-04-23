@@ -2,12 +2,15 @@ import express from 'express';
 import path from 'path';
 import {fileURLToPath} from 'url';
 import fs from 'fs';
-
+import { commentTipoff } from '../controllers/tipoff.js';
 import Tipoff from '../models/Tipoff.js';
+
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const router = express.Router();
+
+router.post('/:id/comment', commentTipoff);
 
 router.get('/all', (req, res) => {
     Tipoff.find({}, (err, tipoffs) => {
