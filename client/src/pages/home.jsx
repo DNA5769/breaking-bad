@@ -1,12 +1,13 @@
 import { useContext, useEffect } from 'react';
 import Footer from '../components/Footer'
-// import {  withRouter } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import Tip from '../components/Tip'
 import '../App.css'
 import { TransactionContext } from '../context/TransactionContext';
 
 
 const Home = () => {
+  let navigate = useNavigate();
   // let history = useHistory();
   // let admin = 0x52e1447a2c83d66216c6c0a4246fad6435a2de26;
 
