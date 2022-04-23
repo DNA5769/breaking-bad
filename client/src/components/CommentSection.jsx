@@ -1,6 +1,7 @@
 import React, { useState, useRef, useContext, useEffect } from 'react'
 import { TransactionContext } from '../context/TransactionContext';
 import * as API from '../../api/index'
+import { BiSend } from 'react-icons/bi'
 
 const CommentSection = ({ tipoff }) => {
     const {currentAccount} = useContext(TransactionContext);
@@ -38,10 +39,8 @@ const CommentSection = ({ tipoff }) => {
                     <h5 className='align-top text-left'> {c} </h5>
                 ))}
             </div>
-            <div>
-                <input className='p-2' placeholder='Write Here' value={comment} onChange={(e) => setComment(e.target.value)}></input>
-            </div>
-            <button className="text-white bg-black p-1 rounded-sm" onClick={handleClick}>Send</button>
+            <input placeholder='Write Here' value={comment} onChange={(e) => setComment(e.target.value)} className="w-2/3 h-10 p-2 my-2 border-2 rounded-md font-inter"></input>
+            <button className="text-white p-2 rounded-sm bg-cyan-500" onClick={handleClick}><BiSend/></button>
         </div>
     )
 }
