@@ -5,7 +5,6 @@ import { TransactionContext } from '../context/TransactionContext';
 
 const AddTip = () => {
     const { currentAccount } = useContext(TransactionContext);
-    console.log(currentAccount)
 
     const [location, setLocation] = useState('');
     const [message, setMessage] = useState('');
@@ -38,6 +37,7 @@ const AddTip = () => {
             setError('');
         
         const formData = new FormData();
+        formData.append('userHash', currentAccount);
         formData.append('location', location);
         formData.append('message', message);
 
@@ -67,7 +67,7 @@ const AddTip = () => {
                     <h2 className='flex-1'>{file.name}</h2>
                     <h2 className='font-bold text-red-600 cursor-pointer' onClick={() => setFiles(files.filter((f, j) => i !== j))}>X</h2>
                 </div>)}
-                <label for="file-upload" className='w-1/3 p-2 my-2 text-white bg-blue-600 border-2 rounded-md cursor-pointer font-inter'>Upload Evidence (optional) </label>
+                <label for="file-upload" className='w-1/3 p-2 my-2 text-white bg-blue-600 border-2 rounded-md cursor-pointer font-inter'>Upload Evidence</label>
                 <input type='file' id="file-upload" placeholder='Enter the Location' onChange={handleUpload} className='hidden'/>
                 
                 <button className='p-2 px-4 my-2 text-white bg-blue-600 rounded-md font-inter' onClick={handleSubmit}>Add Tip-Off</button>

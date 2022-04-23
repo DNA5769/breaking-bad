@@ -1,12 +1,13 @@
 import { useContext, useEffect } from 'react';
 import Footer from '../components/Footer'
-// import {  withRouter } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Tip from '../components/Tip'
 import '../App.css'
 import { TransactionContext } from '../context/TransactionContext';
 
 
 const Home = () => {
+  const navigate = useNavigate();
   // let history = useHistory();
   // let admin = 0x52e1447a2c83d66216c6c0a4246fad6435a2de26;
 
@@ -19,45 +20,45 @@ const Home = () => {
 
   return (
 
-    <div className="flex min-h-screen flex-col items-center justify-center py-5">
-      <main className='flex w-full flex-1 flex-col items-center px-44 text-center'>
-          <div className='flex w-full justify-between'>
+    <div className="flex flex-col items-center justify-center min-h-screen py-5">
+      <main className='flex flex-col items-center flex-1 w-full text-center px-44'>
+          <div className='flex justify-between w-full'>
             <h1 className='text-2xl font-inter'>Project_Name</h1>
-            <button className='bg-blue-600 p-2 px-4 rounded-md text-white font-inter' onClick={() => navigate('/addTip')}>Add Tip-Off</button>
+            <button className='p-2 px-4 text-white bg-blue-600 rounded-md font-inter' onClick={() => navigate('/addTip')}>Add Tip-Off</button>
           </div>
   
-          <div className='flex w-full my-5 flex-col items-start'>
-            <h3 className='text-lg font-inter mb-5'>Past Tip-Off</h3>
+          <div className='flex flex-col items-start w-full my-5'>
+            <h3 className='mb-5 text-lg font-inter'>Past Tip-Off</h3>
 
-            <table className='border w-full text-left font-inter'>
+            <table className='w-full text-left border font-inter'>
               <thead>
                 <tr className='border'>
-                  <th className='text-gray-900 px-6 py-4 w-1/5'>Name</th>
-                  <th className='text-gray-900 px-6 py-4 w-3/5'>Scenario</th>
-                  <th className='text-gray-900 px-6 py-4 w-1/5'>Reward</th>
+                  <th className='w-1/5 px-6 py-4 text-gray-900'>Name</th>
+                  <th className='w-3/5 px-6 py-4 text-gray-900'>Scenario</th>
+                  <th className='w-1/5 px-6 py-4 text-gray-900'>Reward</th>
                 </tr>
               </thead>
 
               <tbody className='table-body'>
                 <tr>
-                  <td className='px-6 py-4 w-1/5'>Something</td>
-                  <td className='text-gray-900 px-6 py-4 w-1/5'>Sooooo this soo that soo thiss</td>
-                  <td className='text-gray-900 px-6 py-4 w-1/5'>0.003 ETH</td>
+                  <td className='w-1/5 px-6 py-4'>Something</td>
+                  <td className='w-1/5 px-6 py-4 text-gray-900'>Sooooo this soo that soo thiss</td>
+                  <td className='w-1/5 px-6 py-4 text-gray-900'>0.003 ETH</td>
                 </tr>
                 <tr>
-                  <td className='px-6 py-4 w-1/5'>Something</td>
-                  <td className='px-6 py-4 w-1/5'>Sooooo this soo that soo thiss</td>
-                  <td className='px-6 py-4 w-1/5'>0.003 ETH</td>
+                  <td className='w-1/5 px-6 py-4'>Something</td>
+                  <td className='w-1/5 px-6 py-4'>Sooooo this soo that soo thiss</td>
+                  <td className='w-1/5 px-6 py-4'>0.003 ETH</td>
                 </tr>
                 <tr>
-                  <td className='px-6 py-4 w-1/5'>Something</td>
-                  <td className='px-6 py-4 w-1/5'>Sooooo this soo that soo thiss</td>
-                  <td className='px-6 py-4 w-1/5'>0.003 ETH</td>
+                  <td className='w-1/5 px-6 py-4'>Something</td>
+                  <td className='w-1/5 px-6 py-4'>Sooooo this soo that soo thiss</td>
+                  <td className='w-1/5 px-6 py-4'>0.003 ETH</td>
                 </tr>
                 <tr>
-                  <td className='px-6 py-4 w-1/5'>Something</td>
-                  <td className='px-6 py-4 w-1/5'>Sooooo this soo that soo thiss</td>
-                  <td className='px-6 py-4 w-1/5'>0.003 ETH</td>
+                  <td className='w-1/5 px-6 py-4'>Something</td>
+                  <td className='w-1/5 px-6 py-4'>Sooooo this soo that soo thiss</td>
+                  <td className='w-1/5 px-6 py-4'>0.003 ETH</td>
                 </tr>
               </tbody>
               
