@@ -13,7 +13,7 @@ export const login = async (req, res) => {
             return res.status(400).send({ err: "Send a valid Hash Id" }).end()
         }
 
-        if(hashes.includes(hash_id))
+        if(hashes.map(hash => hash.toLowerCase()).includes(hash_id.toLowerCase()))
             return res.send({ isAdmin: true }).end()
         else{
             const user = await User.findOne({ hash_id: hash_id })

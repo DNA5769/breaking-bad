@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useDebugValue, useEffect, useState } from "react";
 import { ethers } from "ethers";
 
 import { contractABI, contractAddress } from "../utils/constants";
@@ -141,6 +141,10 @@ export const TransactionsProvider = ({ children }) => {
       throw new Error("No ethereum object");
     }
   };
+
+  useEffect(() => {
+    window.ethereum.on('accountsChanged', accounts => setCurrentAccount(accounts[0]));
+  }, []);
 
   useEffect(() => {
       checkIfWalletIsConnect();

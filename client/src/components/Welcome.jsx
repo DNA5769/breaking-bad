@@ -1,19 +1,27 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { TransactionContext } from '../context/TransactionContext';
 import { Navigate } from 'react-router-dom'
 import * as API from '../../api/index'
 
 const Welcome = () => {
     const {connectWallet,currentAccount} = useContext(TransactionContext);
+    const [redirectState, setRedirectState] = useState(0)
     
     useEffect(() => {
       if(currentAccount != "")
-        API.login(currentAccount).then(res => console.log(res.data));
+        API.login(currentAccount).then(res => {
+          if(res.data.isAdmin)
+            setRedirectState(1);
+          else
+            setRedirectState(2);
+        });
     }, [currentAccount])
     
     return (<>
-    <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
+    <main className="flex flex-col items-center justify-center flex-1 w-full px-20 text-center">
         <h1 className="text-6xl font-bold">
+        { redirectState === 1 && <Navigate to='/admin' /> }
+        { redirectState === 2 && <Navigate to='/home' /> }
           Welcome to{' '}
           <a className="text-blue-600" href="https://nextjs.org">
             Our App
