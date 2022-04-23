@@ -37,6 +37,7 @@ const Admin = () => {
     //         return tip1.
     //     })
     // }    
+    console.log(allTips)
 
     const sortByScore = () => {
         setTips(()=>{
