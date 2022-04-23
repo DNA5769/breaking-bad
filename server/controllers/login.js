@@ -39,7 +39,7 @@ export const getUser = async (req,res) => {
     if(hash_id){
         const user = await User.findOne({hash_id:hash_id})
         console.log(user)
-        return res.send({data:user}).end();
+        return res.send({user:user}).end();
     }
     else 
         return res.status(400).send({err:"Not a Valid Hash Id"}).end()

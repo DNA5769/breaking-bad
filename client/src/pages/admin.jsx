@@ -38,6 +38,7 @@ const Admin = () => {
     //         return tip1.
     //     })
     // }    
+    console.log(allTips)
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-5 font-inter">
@@ -57,10 +58,13 @@ const Admin = () => {
               {
                 allTips && allTips.map(
                     
-                    (tipoff) => {
+                    (tipoff,index) => {
                         let score = 0;
                         axios.post('http://localhost:3030/user/getUser',{hash_id:tipoff.userHash})
-                        .then(res => score = res.data.score)
+                        .then(res => {
+                            score = res.data.user.score
+                            allTips[index].score = score
+                        })
                         .catch(err => console.log(err)) 
 
                         return( <div className={ (parseFloat( tipoff.bounty.$numberDecimal ) > 0 ? "bg-green-50" : "bg-gray-50") + " w-full border rounded-md p-3 flex flex-col items-start hover:border-gray-500 font-inter  hover:drop-shadow-md"}>
