@@ -23,5 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
+.env
 tipoff_evidences/*
 !tipoff_evidences/.gitkeep 
