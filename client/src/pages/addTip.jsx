@@ -37,6 +37,13 @@ const AddTip = () => {
         }
         else
             setError('');
+
+        let res = await axios.get(`http://localhost:81/gibberish?sentence=${message}`)
+        if (res.data.is_gibberish)
+        {
+            setError('Please write proper sentences and explain the scene well!!!');
+            return;
+        }
         
         const formData = new FormData();
         formData.append('userHash', currentAccount);
@@ -66,7 +73,7 @@ const AddTip = () => {
                 <h1 className='m-5 text-2xl font-inter'>Enter The Details</h1>
                 <input type='text' placeholder='Enter the Location' value={location} onChange={e => setLocation(e.target.value)} className='w-1/3 p-2 my-2 border-2 rounded-md font-inter'/>
                 <textarea placeholder='Brief the Scene' value={message} onChange={e => setMessage(e.target.value)} rows={4} className='w-1/3 p-2 my-2 border-2 rounded-md font-inter' />
-                {files.map((file, i) => <div className='flex justify-between w-1/3 p-2 my-2 border-2 font-inter rounded-md'>
+                {files.map((file, i) => <div className='flex justify-between w-1/3 p-2 my-2 border-2 rounded-md font-inter'>
                     <h2 className='flex-1'>{file.name}</h2>
                     <h2 className='font-bold text-red-600 cursor-pointer' onClick={() => setFiles(files.filter((f, j) => i !== j))}>X</h2>
                 </div>)}
