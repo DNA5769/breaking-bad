@@ -55,7 +55,7 @@ const Home = () => {
           </div>
   
           <div className='flex flex-col items-start w-full my-5'>
-            <h3 className='mb-5 text-lg font-inter'>Past Tip-Off</h3>
+            <h3 className='mb-5 text-lg font-inter'>Your Reports</h3>
 
             <div className='grid grid-cols-3 gap-5'>
               {
