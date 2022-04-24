@@ -47,7 +47,7 @@ const Home = () => {
           { redirect == -1 && <Navigate to='/' /> }
           
           <div className='flex justify-between w-full'>
-            <h1 className='text-2xl font-bold font-inter'>Project_Name</h1>
+            <h1 className='text-2xl font-bold font-inter'>Breaking Bad</h1>
             <div>
               <button className='p-2 px-4 mr-3 text-white bg-blue-600 rounded-md font-inter' onClick={() => navigate('/bounties')}>Recent Bounties</button>
               <button className='p-2 px-4 text-white bg-blue-600 rounded-md font-inter' onClick={() => navigate('/addTip')}>Add Tip-Off</button>
