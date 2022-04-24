@@ -26,8 +26,7 @@ const Admin = () => {
                     axios.get('http://localhost:3030/tipoff/all')
                     .then((res)=>{
                         setTips(res.data)
-                        // console.log(allTips);
-                    })
+                    }) 
                 }
             });
     }, [currentAccount]);
@@ -40,38 +39,41 @@ const Admin = () => {
     // }    
     console.log(allTips)
 
+    const sortByScore = () => {
+        setTips(()=>{
+            allTips.sort((a,b) => (a.score > b.score) ? 1 : ((b.score > a.score) ? -1 : 0))
+            return allTips
+        })
+    }
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-5 font-inter">
         <main className='flex flex-col items-center flex-1 w-full text-center px-44'>
             { redirect && <Navigate to='/home' /> }
             <h3 className='my-8 text-3xl font-bold'>Admin</h3>
-            <div className='right-0 bottom-0'>
-            <label>
-            Sort by
-            <select className=''>
-                <option value=''>Select</option>
-                <option  value='User Reliability'>User Reliability</option>
-            </select>
-            </label>
-            </div>
             <div className='grid w-full grid-cols-3 gap-5'>
               {
                 allTips && allTips.map(
-                    
                     (tipoff,index) => {
-                        let score = 0;
-                        axios.post('http://localhost:3030/user/getUser',{hash_id:tipoff.userHash})
-                        .then(res => {
-                            score = res.data.user.score
-                            allTips[index].score = score
-                        })
-                        .catch(err => console.log(err)) 
+                        if(!allTips[index].score){
+                            let score;
+                            axios.post('http://localhost:3030/user/getUser',{hash_id:tipoff.userHash})
+                            .then(res => {
+                                score = res.data.user.score
+                                allTips[index].score = score
+                                setTips(()=>{
+                                    allTips.sort((a,b) => (a.score < b.score) ? 1 : ((b.score < a.score) ? -1 : 0))
+                                    return allTips
+                                })
+                            })
+                            .catch(err => console.log(err)) 
+                        }
 
                         return( <div className={ (parseFloat( tipoff.bounty.$numberDecimal ) > 0 ? "bg-green-50" : "bg-gray-50") + " w-full border rounded-md p-3 flex flex-col items-start hover:border-gray-500 font-inter  hover:drop-shadow-md"}>
                             <Tip tipoff = {tipoff}>
                             <div className='flex flex-row w-full space-x-2 rounded-md p-2'>
                                 <AiOutlineStar size={25} className="w-1/12"/>
-                                <p className='w-11/12 text-left'>{score}</p>
+                                <p className='w-11/12 text-left'>{tipoff.score}</p>
                             </div>
                             <div className='flex justify-center w-full my-2 item-center'>
                                 { parseFloat( tipoff.bounty.$numberDecimal ) === 0 &&

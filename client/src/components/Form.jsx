@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Loader from "./Loader";
 import { TransactionContext } from "../context/TransactionContext";
+import axios from "axios";
 const Input = ({ placeholder, name, type, value, handleChange }) => (
     <input
       placeholder={placeholder}
@@ -22,6 +23,7 @@ const Form = () => {
         if (!addressTo || !amount || !keyword || !message) return;
     
         sendTransaction();
+        axios.post('http://localhost:3030/admin/transact',{addressTo:addressTo})
       };
     return(
     <div className='flex w-full flex-col items-center px-44 text-center'>
