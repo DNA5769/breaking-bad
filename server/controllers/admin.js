@@ -1,9 +1,9 @@
 import { User } from '../models/user.js'
 
 async function transact(req,res) {
-    const {addressto,amount} = req.body;
+    const {addressto} = req.body;
 
-    if(!addressto || !amount){
+    if(!addressto){
         return res.status(400).send({err:"Send Valid Address"}).end()
     }
     const user = await User.findOne({hash_id: addressto})
