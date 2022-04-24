@@ -147,7 +147,12 @@ export const TransactionsProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    window.ethereum.on('accountsChanged', accounts => setCurrentAccount(accounts[0]));
+    window.ethereum.on('accountsChanged', accounts => {
+      if (accounts.length)
+        setCurrentAccount(accounts[0])
+      else
+        setCurrentAccount("");
+    });
   }, []);
 
   useEffect(() => {

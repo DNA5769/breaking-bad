@@ -9,18 +9,22 @@ import '../App.css'
 
 const Home = () => {
   const {currentAccount} = useContext(TransactionContext);
-  const [redirect, setRedirect] = useState(false);
+  const [redirect, setRedirect] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(currentAccount != "")
+    if(currentAccount !== "")
+    {
       API.login(currentAccount).then(res => {
         if(res.data.isAdmin)
-          setRedirect(true);
+          setRedirect(1);
         else
           axios.get('http://localhost:3030/tipoff/user', { params: { userHash: currentAccount } })
             .then(res => setTipoffs(res.data));
       });
+    }
+    else
+      setRedirect(-1);
   }, [currentAccount]);
   
   const [tipoffs, setTipoffs] = useState([]);
@@ -39,12 +43,13 @@ const Home = () => {
 
     <div className="flex flex-col items-center justify-center min-h-screen py-5">
       <main className='flex flex-col items-center flex-1 w-full text-center px-44'>
-          { redirect && <Navigate to='/admin' /> }
+          { redirect == 1 && <Navigate to='/admin' /> }
+          { redirect == -1 && <Navigate to='/' /> }
           
           <div className='flex justify-between w-full'>
             <h1 className='text-2xl font-bold font-inter'>Project_Name</h1>
             <div>
-              <button className='p-2 px-4 text-white bg-blue-600 rounded-md font-inter mr-3' onClick={() => navigate('/bounties')}>Recent Bounties</button>
+              <button className='p-2 px-4 mr-3 text-white bg-blue-600 rounded-md font-inter' onClick={() => navigate('/bounties')}>Recent Bounties</button>
               <button className='p-2 px-4 text-white bg-blue-600 rounded-md font-inter' onClick={() => navigate('/addTip')}>Add Tip-Off</button>
             </div>
           </div>

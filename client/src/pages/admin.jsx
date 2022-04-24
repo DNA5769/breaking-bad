@@ -15,21 +15,25 @@ import Tip from '../components/Tip';
 const Admin = () => {
     const [allTips, setTips] = useState();
     const {currentAccount} = useContext(TransactionContext);
-    const [redirect, setRedirect] = useState(false);
+    const [redirect, setRedirect] = useState(0);
   
     useEffect(() => {
-        if(currentAccount != "")
-            API.login(currentAccount).then(res => {
-                if(!res.data.isAdmin)
-                    setRedirect(true);
-                else{
-                    axios.get('http://localhost:3030/tipoff/all')
-                    .then((res)=>{
-                        setTips(res.data)
-                        // console.log(allTips);
-                    })
-                }
-            });
+        if(currentAccount !== "")
+        {
+          API.login(currentAccount).then(res => {
+              if(!res.data.isAdmin)
+                  setRedirect(1);
+              else{
+                  axios.get('http://localhost:3030/tipoff/all')
+                  .then((res)=>{
+                      setTips(res.data)
+                      // console.log(allTips);
+                  })
+              }
+          });
+        }
+        else
+          setRedirect(-1);
     }, [currentAccount]);
 
     // const sortTips =() =>{
@@ -42,9 +46,10 @@ const Admin = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-5 font-inter">
         <main className='flex flex-col items-center flex-1 w-full text-center px-44'>
-            { redirect && <Navigate to='/home' /> }
+            { redirect == 1 && <Navigate to='/home' /> }
+            { redirect == -1 && <Navigate to='/' /> }
             <h3 className='my-8 text-3xl font-bold'>Admin</h3>
-            <div className='right-0 bottom-0'>
+            <div className='bottom-0 right-0'>
             <label>
             Sort by
             <select className=''>
@@ -65,7 +70,7 @@ const Admin = () => {
 
                         return( <div className={ (parseFloat( tipoff.bounty.$numberDecimal ) > 0 ? "bg-green-50" : "bg-gray-50") + " w-full border rounded-md p-3 flex flex-col items-start hover:border-gray-500 font-inter  hover:drop-shadow-md"}>
                             <Tip tipoff = {tipoff}>
-                            <div className='flex flex-row w-full space-x-2 rounded-md p-2'>
+                            <div className='flex flex-row w-full p-2 space-x-2 rounded-md'>
                                 <AiOutlineStar size={25} className="w-1/12"/>
                                 <p className='w-11/12 text-left'>{score}</p>
                             </div>
