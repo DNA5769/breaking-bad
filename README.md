@@ -9,7 +9,7 @@ This project was developed by us, **Team ECMAniacs**, as a submission for [Hack3
 
 ## Resources
 - [PPT](https://docs.google.com/presentation/d/1fYIHUMnGWKTnOIMAlDmV1EFZmSDFJ2t9/edit?usp=sharing&ouid=106037366898639542846&rtpof=true&sd=true)
-- [Demo]()
+- [Video Demo](https://youtu.be/5V1p-XePHN4)
 
 ## Team ECMAniacs
 - [Aqib Suhail](https://github.com/geeqib23)
