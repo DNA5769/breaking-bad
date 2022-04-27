@@ -6,6 +6,7 @@
 ![Designing](https://img.shields.io/badge/designed%20in-ms%20paint-blueviolet.svg)
 
 This project was developed by us, **Team ECMAniacs**, as a submission for [Hack36 5.0](https://www.hack36.com/)
+
 *Update* : Ended up securing a Top 10 rank in the Hackathon(among 100+ teams)
 
 ## Resources
