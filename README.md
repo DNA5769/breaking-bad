@@ -6,6 +6,7 @@
 ![Designing](https://img.shields.io/badge/designed%20in-ms%20paint-blueviolet.svg)
 
 This project was developed by us, **Team ECMAniacs**, as a submission for [Hack36 5.0](https://www.hack36.com/)
+*Update* : Ended up securing a Top 10 rank in the Hackathon(among 100+ teams)
 
 ## Resources
 - [PPT](https://docs.google.com/presentation/d/1fYIHUMnGWKTnOIMAlDmV1EFZmSDFJ2t9/edit?usp=sharing&ouid=106037366898639542846&rtpof=true&sd=true)
@@ -19,7 +20,7 @@ This project was developed by us, **Team ECMAniacs**, as a submission for [Hack3
 
 ---
 
-Breaking Bad is a webapp that enables public to report the findings of drug trafficking in their locality completely anonymously. This anonymity is ensured by using Web3.
+Breaking Bad is a webapp that enables public to report the findings of drug trafficking in their locality completely anonymously(ensured by using Web3) and gives power to the Police authorities to reward the legit complaints with ethereum.
 
 ## Why We Built This
 India lies sandwiched between two of the world’s “three key production areas” for opiates and cannabis, leading to an illicit drugs crisis. Drug addiction is a complex and widespread health issue for India and drug trafficking is the major reason behind it.
